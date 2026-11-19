@@ -1,0 +1,9 @@
+image,type,annotator,reviewer,action
+000000000785,missing_box,A04,Q01,Bổ sung bounding box cho đối tượng còn thiếu
+000000003845,invalid_class,A01,Q01,Sửa lại class_id về danh mục hợp lệ 0-79
+000000004765,invalid_class,A01,Q01,Sửa lại class_id về danh mục hợp lệ 0-79
+000000005992,missing_image,A03,Q02,Bổ sung file ảnh gốc và gán lại nhãn detection
+000000013177,class_swap,A04,Q02,Gán lại đúng nhãn đối tượng theo ảnh thực tế
+000000016451,bbox_out_of_bounds,A05,Q01,Cắt tỉa và chuẩn hóa tọa độ bounding box không vượt ra ngoài ảnh
+000000020247,duplicate_box,A04,Q01,Loại bỏ box lặp trùng lặp
+000000023126,bbox_drift,A03,Q01,Vẽ lại bounding box bao khít đối tượng trong ảnh

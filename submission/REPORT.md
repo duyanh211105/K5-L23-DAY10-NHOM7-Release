@@ -120,7 +120,26 @@ Việc cần làm:
 Nhờ lineage, nhóm biết chính xác run nào bị ảnh hưởng (`impact`) thay vì phải đoán hay kiểm mọi model.
 
 ## 4. Hash chứng minh gì, không chứng minh gì?
-<<Pha 4>>
+
+### Hash chứng minh điều gì?
+1. **Tính toàn vẹn (Data Integrity):** File dữ liệu (ảnh, nhãn) không bị biến đổi, hỏng hóc hoặc bị can thiệp dù chỉ 1 bit trong quá trình truyền tải và lưu trữ. Thuật toán SHA-256 bảo đảm hiệu ứng tuyết lở (avalanche effect).
+2. **Tính tái lập và kiểm toán (Reproducibility & Auditability):** Khi đóng gói `pack_release.py`, gói bàn giao zip và mã `.sha256` được tạo ra có tính tất định (thứ tự file, mốc thời gian và quyền cố định), giúp bất kỳ ai tải về ở máy khác cũng kiểm tra được đúng mã băm.
+3. **Bảo toàn nguyên tắc bất biến (Immutability):** v1 (`lab250_20c5f74a77e2`) được giữ nguyên mã hash ban đầu, chứng minh nhóm không sửa đè vào lịch sử. Bản v2 là một bản phát hành mới có hash độc lập và liên kết cha-con (`Parent: v1`).
+
+### Hash KHÔNG chứng minh điều gì?
+1. **Không chứng minh chất lượng ngữ nghĩa (Semantic Correctness):** Một file nhãn gán sai hoàn toàn (nhầm xe đạp thành xe máy, box trôi khỏi người) hoặc một file ảnh bị lỗi vẫn có mã hash sha256 hợp lệ 64 ký tự. Hash chỉ đo byte của file chứ không hiểu nội dung bức ảnh.
+2. **Không chứng minh file còn tốt nếu manifest sai:** Điển hình như ca ảnh `000000016010` (`wrong_hash`), bản thân file ảnh mở lên hiển thị hoàn toàn bình thường, nguyên vẹn nhưng mã hash trong manifest lại là mã của ảnh khác. Ngược lại, một file bị hỏng byte vẫn có thể tự sinh ra một hash khớp với chính nó.
+3. **Không chứng minh thẩm quyền:** Bất kỳ ai sửa file cũng có thể tính lại mã hash mới. Hash phải đi kèm quy trình ký nhận, lineage và phân quyền mới có giá trị xác thực.
+
+### Xử lý trong v2: Sửa trực tiếp vs Gán lại
+- **Sửa ngay trong v2 (không cần gán lại):**
+  - `wrong_hash` (`000000016010`): Đã mở ảnh kiểm tra nguyên vẹn, chỉ cần cập nhật mã sha256 thật vào `manifest.csv`.
+  - `scene_leak` (`scene_593`): Đưa cả 5 ảnh về split đa số (`train`) trong `truyvet.csv`.
+  - `guideline_mismatch` (`000000011615`, `000000024567`): Chuẩn hóa guideline trong `truyvet.csv` theo `jobs.csv`.
+- **Chuyển sang rework_queue (loại khỏi v2, 8 ảnh):**
+  - Thiếu file hoặc lỗi nhãn detection (`missing_image`, `invalid_class`, `bbox_out_of_bounds`, `duplicate_box`, `class_swap`, `bbox_drift`, `missing_box`). Bỏ khỏi v2 và phân về đúng annotator/reviewer theo `jobs.csv` để gán lại.
+- **Giữ lại trong v2 (6 ảnh):**
+  - Các ảnh chỉ bị lỗi ở phần panoptic (`invalid_category_id`, `thing_overlap`, `category_swap`, `instance_merge`). Nhãn detection của chúng vẫn hoàn toàn chính xác nên được giữ lại trong v2 phục vụ train model detection, kèm ghi chú trong `README.txt` để báo team panoptic.
 
 ## 5. Truy vết
 <<Pha 5: tiêu chí tầng a/b, vì sao lấy guideline theo job.>>
