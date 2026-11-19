@@ -2,7 +2,68 @@
   <img src="docs/assets/hero.png" alt="Day 10 Lab: Bàn giao dataset và Truy vết" width="100%">
 </p>
 
-# Day 10 Lab — Bàn giao dataset & Truy vết
+# Day 10 Lab — Nhóm 07
+
+> **Thành viên nhóm 07: đọc mục [Cách chạy cho thành viên nhóm](#cách-chạy-cho-thành-viên-nhóm) trước.**
+> Seed luyện tập: **7007**. Chia việc: [submission/TEAM.md](submission/TEAM.md).
+
+## Cách chạy cho thành viên nhóm
+
+Pha 0–2 đã xong (validator, review 9 ứng viên, `errors.json` 18 lỗi). Kết quả nằm trong `submission/r7007/`.
+Dữ liệu ảnh và thư mục `runs/` **không có trên git** (quá nặng, có trong `.gitignore`) — mỗi người tự tạo lại một lần.
+
+### Lần đầu (mỗi người làm một lần, ~10 phút)
+
+Cần Python 3.10+ (`py --version`). Không cần `pip install` (riêng `tools/review_view.py` cần Pillow: `py -m pip install pillow`).
+
+```powershell
+git clone https://github.com/duyanh211105/K5-L23-DAY10-NHOM7-Release.git
+cd K5-L23-DAY10-NHOM7-Release
+git config user.name "<tên GitHub của bạn>"
+git config user.email "<email GitHub của bạn>"
+py -X utf8 scripts/download_public.py
+py -X utf8 scripts/export_submission.py --import submission/r7007
+```
+
+| Lệnh | Làm gì |
+|---|---|
+| `git config ...` | Commit mang tên **của bạn** (rubric chấm mỗi người ≥ 2 commit có nội dung) |
+| `download_public.py` | Tải ~1,2 GB ảnh COCO vào `data_source/` (vài phút) |
+| `export_submission.py --import submission/r7007` | Tạo lại lô seed 7007 giống hệt (`release_id = lab250_20c5f74a77e2`) vào `runs/r7007/`, rồi chép `errors.json`, `review_log.csv`, `candidates.json`, `lineage.jsonl` của nhóm vào |
+
+Kiểm tra đã đúng: `py -X utf8 scripts/score_findings.py --run runs/r7007` phải ra `F1 tổng ≈ 1.0`.
+
+> ⚠️ **Không chạy `run_lab.py`** (sẽ gắn thêm `R-021` vào lineage). **Không sửa `runs/r7007/delivery/`** (lô v1) và **không sửa `scripts/`**.
+
+### Mỗi lần làm việc
+
+```powershell
+git pull                                                    # lấy bài mới nhất của nhóm
+py -X utf8 scripts/export_submission.py --import submission/r7007   # chỉ khi người khác vừa đẩy kết quả mới
+# ... làm phần của mình trong runs/r7007/ ...
+py -X utf8 scripts/export_submission.py --run runs/r7007    # chép kết quả runs/ -> submission/ để commit được
+git add submission
+git commit -m "P<số pha>: <làm gì>"
+git push
+```
+
+Làm trong `runs/` thì **phải** `export_submission.py --run runs/r7007` trước khi commit, nếu không kết quả chỉ nằm trên máy bạn.
+`--import` **ghi đè** `runs/r7007/` bằng bản trên git — đang có việc dở chưa export thì export + commit trước rồi mới import.
+Hai người cùng pha: báo nhau trước khi push, ai push sau thì `git pull` trước.
+
+### Ai làm gì
+
+| Người | Pha | Bắt đầu từ |
+|---|---|---|
+| Trương Duy Anh | 0–2 ✅ | đã xong; đề ẩn: chạy validator + `tools/review_view.py` |
+| Hà Tiến Trinh, Đinh Trường Phong | 3–4 | [GUIDE.md](GUIDE.md) Pha 3 → Pha 4. QC v1 = 18 lỗi / 250 ảnh = 7,2% > 2% → HOLD |
+| Nguyễn Hoàng Việt Anh, Nguyễn Trường An | 5–6 | [GUIDE.md](GUIDE.md) Pha 5 (`runs/r7007/delivery/incoming/ticket.md`) và Pha 6 (`templates/security.md`) |
+
+Kiểm tra trước khi nộp: `py -X utf8 scripts/check_handover.py --run runs/r7007` không còn FAIL.
+
+---
+
+*Phần dưới là đề bài gốc.*
 
 <p align="center">
   <img alt="nhóm" src="https://img.shields.io/badge/lab-nhóm%205–6%20người-0b1f3a">
