@@ -9,7 +9,7 @@
 |---|---|---|---|---|
 | 1 | Trương Duy Anh | 2A202603027 | duyanh211105 | Pha 0–2: chuẩn bị dữ liệu, validator lỗi luật, đối chiếu detection ↔ panoptic, công cụ xem ảnh, gom review |
 | 2 | Hà Tiến Trịnh | 2A202603154 | HaTienTrinh | Pha 3–4: quyết định HOLD, lineage, bàn giao v2 |
-| 3 | Đinh Trường Phong | <<MSHV>> | <<github>> | Pha 3–4: bàn giao v2, đóng gói, `check_handover.py` |
+| 3 | Đinh Trường Phong | 2A202603126 |  Đinh Trường Phong | Pha 3–4: bàn giao v2, đóng gói, `check_handover.py` |
 | 4 | Nguyễn Hoàng Việt Anh | <<MSHV>> | <<github>> | Pha 5–6: truy vết ticket `trace.json`, đề ẩn |
 | 5 | Nguyễn Trường An | <<MSHV>> | <<github>> | Pha 5–6: `security.md`, đề ẩn, `REPORT.md` |
 
