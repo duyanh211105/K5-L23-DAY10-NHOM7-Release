@@ -1,15 +1,15 @@
 # Nhóm 07
 
 - Seed luyện tập: 7007
-- Repo: https://github.com/duyanh211105/K5-L2-Day10-TruongDuyAnh-2A202603027-Dataset-Release-Handover
+- Repo: https://github.com/duyanh211105/K5-L23-DAY10-NHOM7-Release
 
 | # | Họ và tên | MSHV | Tài khoản GitHub | Phần chính |
 |---|---|---|---|---|
 | 1 | Trương Duy Anh | 2A202603027 | duyanh211105 | Validator luật (Pha 1) + chuẩn bị dữ liệu (Pha 0) |
-| 2 | <<Họ tên TV2>> | <<MSHV>> | <<github>> | Đối chiếu det ↔ panoptic, công cụ xem ảnh (Pha 2) |
-| 3 | <<Họ tên TV3>> | <<MSHV>> | <<github>> | Review ảnh, chốt `errors.json`, `REPORT.md` (Pha 2–3) |
-| 4 | <<Họ tên TV4>> | <<MSHV>> | <<github>> | Bàn giao v2, lineage, `check_handover.py` (Pha 3–4) |
-| 5 | <<Họ tên TV5>> | <<MSHV>> | <<github>> | Truy vết ticket `trace.json` + `security.md` (Pha 5–6) |
+| 2 | Hà Tiến Trinh | <<MSHV>> | <<github>> | Đối chiếu det ↔ panoptic, công cụ xem ảnh (Pha 2) |
+| 3 | Nguyễn Trường An | <<MSHV>> | <<github>> | Review ảnh, chốt `errors.json`, `REPORT.md` (Pha 2–3) |
+| 4 | Đinh Trường Phong | <<MSHV>> | <<github>> | Bàn giao v2, lineage, `check_handover.py` (Pha 3–4) |
+| 5 | Nguyễn Hoàng Việt Anh | <<MSHV>> | <<github>> | Truy vết ticket `trace.json` + `security.md` (Pha 5–6) |
 
 ## Chia việc theo pha
 
@@ -27,15 +27,15 @@
 
 ## Chia hàng đợi review seed 7007 (9 ứng viên trong `runs/r7007/candidates.json`)
 
-| Người xem | Ảnh |
-|---|---|
-| TV1 | 000000013177, 000000006471 |
-| TV2 | 000000023899, 000000015079 |
-| TV3 | 000000023126, 000000000785 |
-| TV4 | 000000001818, 000000012748 |
-| TV5 | 000000000872 |
+| Người xem (thực tế, theo `review_log.csv`) | Ảnh | Kết luận |
+|---|---|---|
+| Trương Duy Anh | 000000013177, 000000006471 | class_swap, category_swap — confirmed |
+| Hà Tiến Trinh | 000000023899 | instance_merge — confirmed |
+| Nguyễn Trường An | 000000015079, 000000023126 | instance_merge, bbox_drift — confirmed |
+| Đinh Trường Phong | 000000000785, 000000001818 | missing_box confirmed; bbox_drift rejected |
+| Nguyễn Hoàng Việt Anh | 000000012748, 000000000872 | bbox_drift rejected (cả hai) |
 
-Mỗi dòng trong `review_log.csv` ghi rõ ai xem (ví dụ thêm "— TV3" cuối note) và **thấy gì** trong ảnh.
+Mỗi dòng trong `review_log.csv` ghi rõ ai xem (tên người xem ở cuối note) và **thấy gì** trong ảnh.
 
 ## Đề ẩn (40 phút)
 
