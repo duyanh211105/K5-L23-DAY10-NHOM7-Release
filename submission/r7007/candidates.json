@@ -1,0 +1,283 @@
+{
+ "candidates": [
+  {
+   "image": "000000013177",
+   "type": "class_swap",
+   "alt_types": [
+    "category_swap"
+   ],
+   "score": 3.9959,
+   "detail": "detection ghi motorcycle, panoptic ghi bicycle cùng vị trí (IoU 1.00); mở ảnh: nếu vật là bicycle thì class_swap, nếu là motorcycle thì category_swap",
+   "focus": {
+    "seg_id": 6250585,
+    "seg_cls": "bicycle",
+    "seg_xyxy": [
+     270,
+     3,
+     381,
+     198
+    ],
+    "boxes": [
+     {
+      "cls": "motorcycle",
+      "xyxy": [
+       270.0,
+       3.0,
+       381.1,
+       198.6
+      ]
+     }
+    ]
+   },
+   "other_signals": []
+  },
+  {
+   "image": "000000006471",
+   "type": "class_swap",
+   "alt_types": [
+    "category_swap"
+   ],
+   "score": 3.9842,
+   "detail": "detection ghi bench, panoptic ghi couch cùng vị trí (IoU 0.98); mở ảnh: nếu vật là couch thì class_swap, nếu là bench thì category_swap",
+   "focus": {
+    "seg_id": 4869200,
+    "seg_cls": "couch",
+    "seg_xyxy": [
+     341,
+     98,
+     419,
+     119
+    ],
+    "boxes": [
+     {
+      "cls": "bench",
+      "xyxy": [
+       340.9,
+       97.9,
+       419.5,
+       119.0
+      ]
+     }
+    ]
+   },
+   "other_signals": []
+  },
+  {
+   "image": "000000023899",
+   "type": "instance_merge",
+   "alt_types": [],
+   "score": 2.7269,
+   "detail": "box person [215,145,397,346] không có segment riêng; 73% diện tích box là pixel của segment person thuộc box khác",
+   "focus": {
+    "seg_id": 1249810,
+    "seg_cls": "person",
+    "seg_xyxy": [
+     2,
+     32,
+     612,
+     419
+    ],
+    "boxes": [
+     {
+      "cls": "person",
+      "xyxy": [
+       214.9,
+       145.2,
+       397.3,
+       345.7
+      ]
+     },
+     {
+      "cls": "person",
+      "xyxy": [
+       1.9,
+       32.5,
+       611.7,
+       419.3
+      ]
+     }
+    ]
+   },
+   "other_signals": []
+  },
+  {
+   "image": "000000015079",
+   "type": "instance_merge",
+   "alt_types": [],
+   "score": 2.3489,
+   "detail": "segment sandwich (94673 px) trải qua 2 box sandwich (70%, 52%)",
+   "focus": {
+    "seg_id": 2442325,
+    "seg_cls": "sandwich",
+    "seg_xyxy": [
+     55,
+     8,
+     477,
+     352
+    ],
+    "boxes": [
+     {
+      "cls": "sandwich",
+      "xyxy": [
+       55.1,
+       103.5,
+       384.4,
+       352.4
+      ]
+     },
+     {
+      "cls": "sandwich",
+      "xyxy": [
+       203.4,
+       8.3,
+       476.8,
+       223.1
+      ]
+     }
+    ]
+   },
+   "other_signals": []
+  },
+  {
+   "image": "000000023126",
+   "type": "bbox_drift",
+   "alt_types": [],
+   "score": 2.0575,
+   "detail": "box person chỉ chứa 94% pixel segment; tâm box lệch (-11,+39) px, box 116x345 vs segment 112x334",
+   "focus": {
+    "seg_id": 4144959,
+    "seg_cls": "person",
+    "seg_xyxy": [
+     167,
+     15,
+     279,
+     349
+    ],
+    "boxes": [
+     {
+      "cls": "person",
+      "xyxy": [
+       154.2,
+       48.2,
+       270.0,
+       393.0
+      ]
+     }
+    ]
+   },
+   "other_signals": []
+  },
+  {
+   "image": "000000000785",
+   "type": "missing_box",
+   "alt_types": [],
+   "score": 1.0141,
+   "detail": "segment skis 3828 px (1.4% ảnh) không có box skis nào",
+   "focus": {
+    "seg_id": 8684420,
+    "seg_cls": "skis",
+    "seg_xyxy": [
+     206,
+     362,
+     615,
+     400
+    ],
+    "boxes": []
+   },
+   "other_signals": []
+  },
+  {
+   "image": "000000001818",
+   "type": "bbox_drift",
+   "alt_types": [
+    "(có thể lệch tự nhiên: box khác kích thước segment)"
+   ],
+   "score": 0.4982,
+   "detail": "box zebra chỉ chứa 50% pixel segment; tâm box lệch (+90,+0) px, box 462x424 vs segment 638x424 — KHÁC kích thước, nhiều khả năng che khuất/tự nhiên",
+   "focus": {
+    "seg_id": 8092282,
+    "seg_cls": "zebra",
+    "seg_xyxy": [
+     0,
+     1,
+     638,
+     425
+    ],
+    "boxes": [
+     {
+      "cls": "zebra",
+      "xyxy": [
+       178.0,
+       1.4,
+       640.0,
+       425.0
+      ]
+     }
+    ]
+   },
+   "other_signals": []
+  },
+  {
+   "image": "000000012748",
+   "type": "bbox_drift",
+   "alt_types": [
+    "(có thể lệch tự nhiên: box khác kích thước segment)"
+   ],
+   "score": 0.0615,
+   "detail": "box person chỉ chứa 94% pixel segment; tâm box lệch (-2,+25) px, box 263x444 vs segment 259x493 — KHÁC kích thước, nhiều khả năng che khuất/tự nhiên",
+   "focus": {
+    "seg_id": 4079972,
+    "seg_cls": "person",
+    "seg_xyxy": [
+     221,
+     139,
+     480,
+     632
+    ],
+    "boxes": [
+     {
+      "cls": "person",
+      "xyxy": [
+       217.2,
+       188.4,
+       480.0,
+       632.8
+      ]
+     }
+    ]
+   },
+   "other_signals": []
+  },
+  {
+   "image": "000000000872",
+   "type": "bbox_drift",
+   "alt_types": [
+    "(có thể lệch tự nhiên: box khác kích thước segment)"
+   ],
+   "score": 0.0441,
+   "detail": "box person chỉ chứa 96% pixel segment; tâm box lệch (-5,-37) px, box 292x457 vs segment 265x481 — KHÁC kích thước, nhiều khả năng che khuất/tự nhiên",
+   "focus": {
+    "seg_id": 12234672,
+    "seg_cls": "person",
+    "seg_xyxy": [
+     164,
+     126,
+     429,
+     607
+    ],
+    "boxes": [
+     {
+      "cls": "person",
+      "xyxy": [
+       145.3,
+       100.7,
+       437.2,
+       558.0
+      ]
+     }
+    ]
+   },
+   "other_signals": []
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+image,type,verdict,note
+000000013177,class_swap,confirmed,"xe dựng sau lưng người sửa xe là xe đạp: khung mảnh, nan hoa, không động cơ; detection ghi motorcycle là sai, panoptic ghi bicycle đúng — Truong Duy Anh"
+000000006471,category_swap,confirmed,"vật trong dugout sau cầu thủ số 10 là ghế băng dài không đệm, cùng kiểu ghế cầu thủ đang ngồi; detection ghi bench đúng, panoptic ghi couch sai — Truong Duy Anh"
+000000023899,instance_merge,confirmed,"người phụ nữ tóc ngắn ngồi giữa sofa và người đàn ông mờ ở tiền cảnh là 2 người riêng nhưng panoptic tô chung một segment person — Ha Tien Trinh"
+000000015079,instance_merge,confirmed,"trên đĩa có 2 nửa sandwich tách rời, detection có 2 box riêng, nhưng panoptic gộp cả hai nửa vào 1 segment sandwich — Nguyen Truong An"
+000000023126,bbox_drift,confirmed,"người đứng trên lưng ngựa: box person bị dịch xuống, cắt mất đỉnh đầu và thò xuống thân ngựa dưới chân, segment ôm đúng người — Nguyen Truong An"
+000000000785,missing_box,confirmed,"đôi ván trượt dưới chân người áo đỏ nhìn rõ, dài gần nửa ảnh, panoptic có segment skis nhưng detection không có box skis — Đinh Trường Phong"
+000000001818,bbox_drift,rejected,"box zebra ôm đúng ngựa con đang cúi ăn cỏ; segment đỏ là ngựa vằn lớn bị cắt ở mép ảnh, không phải box bị dịch; lặp lại ở mọi seed — Đinh Trường Phong"
+000000012748,bbox_drift,rejected,"người áo đỏ bế em bé: box chỉ hụt phần đỉnh đầu, 3 cạnh còn lại khớp, không bị dịch nguyên box; lặp lại ở mọi seed nên là lệch sẵn của COCO — Nguyễn Hoàng Việt Anh"
+000000000872,bbox_drift,rejected,"hai cầu thủ chạy chồng lên nhau, box person ôm gần hết người áo trắng, chỉ bàn chân thò ra mép dưới; do chồng lấn, không phải box lệch — Nguyễn Hoàng Việt Anh"
