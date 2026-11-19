@@ -56,7 +56,7 @@ Hai người cùng pha: báo nhau trước khi push, ai push sau thì `git pull`
 | Người | Pha | Bắt đầu từ |
 |---|---|---|
 | Trương Duy Anh | 0–2 ✅ | đã xong; đề ẩn: chạy validator + `tools/review_view.py` |
-| Hà Tiến Trinh, Đinh Trường Phong | 3–4 | [GUIDE.md](GUIDE.md) Pha 3 → Pha 4. QC v1 = 18 lỗi / 250 ảnh = 7,2% > 2% → HOLD |
+| Hà Tiến Trịnh, Đinh Trường Phong | 3–4 | [GUIDE.md](GUIDE.md) Pha 3 → Pha 4. QC v1 = 18 lỗi / 250 ảnh = 7,2% > 2% → HOLD |
 | Nguyễn Hoàng Việt Anh, Nguyễn Trường An | 5–6 | [GUIDE.md](GUIDE.md) Pha 5 (`runs/r7007/delivery/incoming/ticket.md`) và Pha 6 (`templates/security.md`) |
 
 Kiểm tra trước khi nộp: `py -X utf8 scripts/check_handover.py --run runs/r7007` không còn FAIL.

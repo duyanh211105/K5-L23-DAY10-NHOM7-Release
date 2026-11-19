@@ -67,7 +67,57 @@ Báo hết thì bị trừ ở hai chỗ:
 Xem ảnh loại được cả hai loại sai này; nên trên đề ẩn mọi lỗi gán nhãn đều phải có dòng `confirmed` ghi rõ thấy gì.
 
 ## 3. Quyết định và lineage
-<<Pha 3: QC v1 a/250, kết luận, vì sao R-021 phải xem lại hoặc train lại.>>
+
+### QC v1 và kết luận
+
+Lô v1 `lab250_20c5f74a77e2` (seed 7007), 250 ảnh. `errors.json` có **18 lỗi trên 18 target khác nhau**
+(17 ảnh + cảnh `scene_593`). Mỗi ảnh mang nhiều nhất một lỗi; `scene_leak` tính là một ảnh.
+
+| Nhóm | Số | Chi tiết |
+|---|---:|---|
+| Lỗi luật | 12 | missing_image 1, wrong_hash 1, invalid_class 2, bbox_out_of_bounds 1, duplicate_box 1, scene_leak 1, guideline_mismatch 2, invalid_category_id 2, thing_overlap 1 |
+| Lỗi gán nhãn (đã `confirmed` bằng mắt) | 6 | class_swap 1, category_swap 1, instance_merge 2, bbox_drift 1, missing_box 1 |
+
+**QC v1 = 18/250 = 7,2% > 2% → HOLD** (ngưỡng Day 7). Kể cả chỉ tính 12 lỗi luật (12/250 = 4,8%) lô vẫn vượt
+ngưỡng, nên quyết định HOLD không phụ thuộc vào phần review bằng mắt.
+
+Ngưỡng tính theo **tỉ lệ ảnh lỗi**, không theo số lỗi: 18 lỗi trên 250 ảnh khác hẳn 18 lỗi trên 10.000 ảnh. Tỉ lệ
+cho biết model sẽ học bao nhiêu phần dữ liệu sai, và so sánh được giữa các lô có kích thước khác nhau.
+
+### Lineage
+
+```
+py -X utf8 scripts/lineage.py record --event decision --release-id lab250_20c5f74a77e2 --decision HOLD
+py -X utf8 scripts/lineage.py impact --release-id lab250_20c5f74a77e2
+R-021: affected=True action=review_or_retrain
+```
+
+Chuỗi trong `lineage.jsonl`: `inject` (seed 7007) → `train` R-021 trên v1 → `decision` HOLD v1.
+Pha 4 thêm `release` v2 với `parent` = v1.
+
+### Vì sao R-021 phải xem lại hoặc train lại
+
+R-021 đã train trên v1 **trước** khi QC. Trọng số của model đã học từ nhãn sai. HOLD v1 hay làm v2 chỉ đổi dữ liệu,
+không đổi model đã train: R-021 vẫn mang các lỗi đó cho tới khi được đánh giá lại hoặc train lại.
+
+Những gì R-021 đã học sai (theo `errors.json` và `review_log.csv` của nhóm):
+- **Nhãn detection sai lớp hoặc vị trí:** 000000013177 xe đạp bị gán `motorcycle`; 000000023126 box `person` bị
+  dịch xuống, cắt mất đầu; 000000000785 thiếu box `skis` (model học rằng ván trượt là nền); 000000020247 box lặp;
+  000000016451 box tràn mép ảnh; 000000003845, 000000004765 có class_id ngoài 0–79 (tuỳ dataloader: lỗi khi train
+  hoặc bị bỏ qua âm thầm).
+- **Rò rỉ train/val:** `scene_593` có ảnh ở cả train và val. Ảnh cùng cảnh gần giống nhau nên điểm val của R-021 bị
+  thổi phồng; không tin được số đánh giá đã báo.
+- **Guideline cũ của lớp `truck`:** ticket của team AI (model bỏ sót `truck` bị che) khớp với thay đổi v1.2 → v1.3.
+  Các job theo v1.2 được phép bỏ box `truck` bị che, nên R-021 đã học bỏ qua chúng (chi tiết ở mục 5).
+- Lỗi chỉ ở panoptic (6 ảnh) không ảnh hưởng trực tiếp R-021 nếu run chỉ dùng nhãn detection.
+
+Việc cần làm:
+1. **Xem lại:** đánh giá R-021 trên tập val đã sửa (v2, không còn cảnh rò), tập trung vào các lớp bị ảnh hưởng
+   (`bicycle`/`motorcycle`, `person`, `skis`, `truck`), rồi so với số đã báo.
+2. **Train lại** trên v2 (sau khi các ảnh trong `rework_queue.csv` được gán lại) nếu kết quả giảm hoặc không còn tin
+   được, và ghi run mới vào lineage gắn với release v2.
+
+Nhờ lineage, nhóm biết chính xác run nào bị ảnh hưởng (`impact`) thay vì phải đoán hay kiểm mọi model.
 
 ## 4. Hash chứng minh gì, không chứng minh gì?
 <<Pha 4>>
