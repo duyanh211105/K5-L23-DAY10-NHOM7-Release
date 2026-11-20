@@ -11,7 +11,7 @@
 | 2 | Hà Tiến Trịnh | 2A202603154 | HaTienTrinh | Pha 3–4: quyết định HOLD, lineage, bàn giao v2 |
 | 3 | Đinh Trường Phong | 2A202603126 |  Đinh Trường Phong | Pha 3–4: bàn giao v2, đóng gói, `check_handover.py` |
 | 4 | Nguyễn Hoàng Việt Anh | 2A202603109 | MaccaRinn | Pha 5–6: truy vết ticket `trace.json`, đề ẩn |
-| 5 | Nguyễn Trường An | <<MSHV>> | <<github>> | Pha 5–6: `security.md`, đề ẩn, `REPORT.md` |
+| 5 | Nguyễn Trường An | 2A202603110 | nta2112 | Pha 5–6: `security.md`, đề ẩn, `REPORT.md` |
 
 ## Chia việc theo pha
 
