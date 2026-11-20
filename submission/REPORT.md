@@ -143,15 +143,7 @@ Nhờ lineage, nhóm biết chính xác run nào bị ảnh hưởng (`impact`) 
 
 ## 5. Truy vết
 
-### Tiêu chí xác định tầng a và tầng b
-1. **Lớp bị thay đổi quy tắc:** Đọc `guideline/changelog.md` và `incoming/ticket.md`, lớp bị thay đổi là `truck` (v1.2 cho phép bỏ qua vật bị che $>50\%$ hoặc cắt mép ảnh, v1.3 bắt buộc phải gán box).
-2. **Tầng a (`tier_a`):** Các ảnh nằm trong các cảnh team AI đã báo (`scene_370`, `scene_532`), thuộc job áp dụng guideline cũ (`v1.2` theo `jobs.csv`) và có ít nhất một box detection của lớp `truck`. Kết quả: 2 ảnh (`000000001532`, `000000007088`).
-3. **Tầng b (`tier_b`):** Các ảnh khác trong toàn bộ lô dữ liệu cũng thuộc job áp dụng guideline cũ (`v1.2`) và có ít nhất một box detection `truck` nhưng chưa được team AI phát hiện. Kết quả: 5 ảnh (`000000000724`, `000000006040`, `000000006723`, `000000007386`, `000000009769`).
-4. **Danh sách thông báo (`notify`):** Tập hợp tất cả các annotator và reviewer phụ trách các job có ảnh thuộc tầng a và b (`J01`, `J02`, `J03`, `J04` theo `jobs.csv`). Kết quả: 5 người (`A03`, `A04`, `Q01`, `Q02`, `Q03`).
 
-### Vì sao phải lấy guideline theo Job (`jobs.csv`) mà không lấy theo metadata ảnh?
-1. **Tránh lỗi sai lệch metadata (`guideline_mismatch`):** Metadata của từng ảnh có thể bị ghi sai phiên bản guideline do lỗi nhập liệu (điển hình như ảnh `000000011615` và `000000024567` trong lô v1 bị lệch guideline). Nếu lọc theo metadata ảnh thì sẽ bỏ sót hoặc lấy nhầm ảnh.
-2. **Căn cứ quản lý công việc và đào tạo nhân sự:** Quy tắc gán nhãn được ban hành, phổ biến và ký duyệt theo từng đợt giao việc (Job). Người gán và người kiểm thực hiện công việc theo tài liệu hướng dẫn được gắn kèm Job lúc nhận bàn giao. Do đó, `jobs.csv` là nguồn chân lý duy nhất (Single Source of Truth) để xác định nhân sự nào đã làm việc theo quy tắc cũ cần được đào tạo lại.
 
 ## 6. Bug hoặc điểm chưa rõ trong lab (nếu có)
 - Không phát hiện bug trong bộ scripts của lab. Bộ kiểm tra `check_handover.py` và công thức F1 của `score_findings.py` hoạt động nhất quán, chính xác theo đúng rubric.
