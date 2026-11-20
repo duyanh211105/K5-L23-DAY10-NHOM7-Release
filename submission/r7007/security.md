@@ -4,16 +4,16 @@
 
 ## 1. Ca USB: hết giờ, muốn chép lô về nhà làm tiếp
 
-Không chép lô ra USB hay bất kỳ thiết bị cá nhân nào, cũng không gửi file về email cá nhân hoặc nhờ người ngoài "làm hộ" — ba cách làm trên đều đưa dữ liệu đã ký NDA ra khỏi môi trường được kiểm soát của công ty: USB cá nhân dễ thất lạc, dính mã độc, và một khi dữ liệu rời hạ tầng nội bộ thì không còn audit trail nào cho biết nó đi đâu. Việc nhờ người ngoài xử lý dữ liệu còn vô hiệu hóa toàn bộ quy trình phân quyền, vì người đó chưa ký NDA và không có tài khoản được cấp.
+Không chép lô ra USB hay bất kỳ thiết bị cá nhân nào, cũng không gửi file về email cá nhân. Điều này khiến dữ liệu đã ký NDA ra khỏi môi trường được kiểm soát của công ty: USB cá nhân dễ thất lạc, dính mã độc, và một khi dữ liệu rời hạ tầng nội bộ thì không còn audit trail nào cho biết nó đi đâu.
 
-Cách làm đúng: lưu tiến độ vào hạ tầng nội bộ (máy chạy job, repo nội bộ), báo quản lý trực tiếp để xin ở lại làm thêm giờ hoặc chuyển phần dở sang ca sau cho đồng nghiệp tiếp tục theo đúng quy trình bàn giao. Nếu hạn cả đêm là thật thì để quản lý quyết định — họ là người có thẩm quyền mở quyền truy cập từ xa trên hệ thống, chứ không phải mình tự xoay xở.
+Cách làm đúng: lưu tiến độ vào nội bộ  báo quản lý trực tiếp để xin ở lại làm thêm giờ hoặc chuyển phần dở sang ca sau cho đồng nghiệp tiếp tục theo đúng quy trình bàn giao. Nếu hạn cả đêm là thật thì để quản lý quyết định.
 
 ## 2. Năm việc: được hay không
 
 1. **Mở job được giao trên máy công ty — ĐƯỢC.** Đây đúng phạm vi quyền đã được cấp: tài khoản của bạn gắn với job đó, máy công ty có DLP và logging, mọi thao tác đều truy vết được về đúng người.
 2. **Chụp màn hình gửi người quen — KHÔNG.** Ảnh chụp vẫn là dữ liệu dự án (ảnh có người thật, nhãn, guideline nội bộ); gửi ra ngoài qua kênh cá nhân là rò rỉ dữ liệu bất chấp dữ liệu gốc có được chép ra hay không, và không cách nào thu hồi lại được.
 3. **Chép lô ra USB — KHÔNG.** Vấn đề ở mục 1: dữ liệu rời môi trường kiểm soát, thiết bị thất lạc được, không audit trail.
-4. **Dán nhãn thật lên chatbot — KHÔNG.** Chatbot công khai có thể lưu hội thoại để huấn luyện hay cải tiến dịch vụ; nhãn và guideline là tài sản của dự án, và với lô có ảnh người thật thì còn dính dữ liệu cá nhân. Riêng trong lab này, ảnh COCO là dữ liệu công khai nên nhóm được phép hỏi AI — nhưng vẫn phải ghi vào `prompts.md` (RULES); với dữ liệu thật của dự án thì không được phép ở bất kỳ dạng nào.
+4. **Dán nhãn thật lên chatbot — KHÔNG.** Chatbot công khai có thể lưu hội thoại để huấn luyện hay cải tiến dịch vụ; nhãn và guideline là tài sản của dự án, và với lô có ảnh người thật thì còn dính dữ liệu cá nhân.
 5. **Đưa tài khoản CVAT cho đồng nghiệp — KHÔNG.** Tài khoản là định danh cá nhân: mọi dòng gán nhãn hay phê duyệt trong CVAT phải truy về đúng người chịu trách nhiệm. Cho mượn tài khoản làm hỏng audit trail — ảnh bị gán sai sẽ không biết tìm ai, và chính bạn vẫn chịu trách nhiệm cho mọi thao tác xảy ra dưới tên mình. Đồng nghiệp cần quyền thì xin cấp tài khoản riêng.
 
 ## 3. Ca khuôn mặt: thấy mặt người rõ trong lô, guideline yêu cầu làm mờ
