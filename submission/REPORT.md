@@ -143,7 +143,19 @@ Nhờ lineage, nhóm biết chính xác run nào bị ảnh hưởng (`impact`) 
 
 ## 5. Truy vết
 
+### Tiêu chí xác định tầng A và tầng B
 
+Changelog cho biết quy tắc lớp `truck` thay đổi từ v1.2 sang v1.3: v1.2 cho phép bỏ qua vật bị che trên 50% hoặc bị cắt ở mép ảnh, còn v1.3 yêu cầu vẫn phải gán box.
+
+- **Tier A:** ảnh thuộc các cảnh team AI báo (`scene_370`, `scene_532`), thuộc job dùng guideline cũ theo `jobs.csv`, và có box detection lớp `truck`: `000000001532`, `000000007088`.
+- **Tier B:** ảnh khác thỏa điều kiện guideline cũ và có box `truck`, nhưng không thuộc cảnh đã báo: `000000000724`, `000000006040`, `000000006723`, `000000007386`, `000000009769`.
+- **Notify:** annotator và reviewer của các job có ảnh thuộc Tier A/B (`J01`, `J03`, `J04`): `A03`, `A04`, `Q01`, `Q02`, `Q03`.
+
+### Vì sao lấy guideline theo job
+
+Phiên bản guideline để truy vết được lấy từ `jobs.csv`, không lấy từ `metadata.json` của từng ảnh. Metadata ảnh có thể sai do lỗi `guideline_mismatch`; ví dụ `000000011615` và `000000024567` có metadata ghi v1.2 nhưng job của chúng dùng v1.3. Dùng guideline theo job giúp xác định đúng những ảnh và người làm việc theo quy tắc cũ.
+
+Đã kiểm tra bằng `score_findings.py`: F1 truy vết của `tier_a`, `tier_b` và `notify` đều ≈ 1.0.
 
 ## 6. Bug hoặc điểm chưa rõ trong lab (nếu có)
 - Không phát hiện bug trong bộ scripts của lab. Bộ kiểm tra `check_handover.py` và công thức F1 của `score_findings.py` hoạt động nhất quán, chính xác theo đúng rubric.
